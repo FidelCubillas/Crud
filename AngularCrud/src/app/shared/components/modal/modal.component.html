@@ -1,0 +1,10 @@
+<h2>{{ data.message }}</h2>
+<mat-dialog-content class="dialog-content">
+  <div *ngIf="data.content; else showNewForm">
+    <app-edit-user [user]="data.content"></app-edit-user>
+  </div>
+
+  <ng-template #showNewForm>
+    <app-new-user></app-new-user>
+  </ng-template>
+</mat-dialog-content>

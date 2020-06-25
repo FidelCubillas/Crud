@@ -1,0 +1,27 @@
+<div class="new-post-container">
+  <form [formGroup]="editUserForm" (ngSubmit)="editUser(editUserForm.value)">
+ 
+
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+
+       <mat-form-field>
+        <mat-label>Age</mat-label>
+        <input matInput formControlName="age">
+      </mat-form-field>
+
+
+       <mat-form-field>
+        <mat-label>UserName</mat-label>
+        <input matInput formControlName="userName">
+      </mat-form-field>
+
+
+    <div class="container-button">
+      <input type="submit" class="mat-flat-button" value="Save" [mat-dialog-close]="true">
+    </div>
+  </form>
+</div>
+
