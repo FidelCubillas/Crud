@@ -3,21 +3,23 @@
 Angular - Node.js - PostgreSQL
 
 
-# Versiones tecnología 
+# Technology versions 
 
 Angular 9 - Angular Material 9.2.4 - Node.js 12.13.0 - PostgreSQL 4.21
 
 
-# Instalaciones
+# Facilities
 
-Abrir la carpeta BackNodeJs, abrir la terminal y escribir npm i
+Open BackNodeJs folder, open terminal and type npm i
 
-Abrir la carpeta AngularCrud, abrir la terminal y escribir npm i
+Open AngularCrud folder, open terminal and type npm i
 
-Se adjunta el script de la base datos, ubicado en carpeta BackNodeJs/database
+The database script is attached, located in BackNodeJs / database folder
 
-# Correr el proyecto 
 
-Abrir la carpeta BackNodeJs, abrir la terminal y escribir ng serve -o
+# Run project 
 
-Abrir la carpeta AngularCrud, abrir la terminal y escribir npm run dev
+Open BackNodeJs folder, open terminal and type ng serve -o
+
+Open AngularCrud folder, open terminal and write npm run dev
+
