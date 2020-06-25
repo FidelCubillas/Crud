@@ -16,29 +16,26 @@ export class UsersService {
     console.log('Runing');
   }
 
-  /**
-   * Get Users
-   */
+  //Get Users
   public getUsers(): Observable<any> {
     return this.http
       .get<User>(`${this.User}`)
       .pipe(catchError(this._handleError)); //maneja el error en la respuesta
   }
 
-  /**
-   * Create Delete by Id
-   */
-
+  //Delete Users
   public deleteUserById(id: string) {
     return this.http.delete(`${this.User}/${id}`);
   }
 
+  //Create  Users
   public createUsers(user: User) {
     return this.http
       .post<User>(`${this.User}`, user)
-      .pipe(catchError(this._handleError)); //maneja el error en la respuesta
+      .pipe(catchError(this._handleError));
   }
 
+  //Edit  Users
   public editPostById(user: User) {
     return this.http.put(`${this.User}/${user.id}`, user);
   }
