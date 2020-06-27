@@ -20,7 +20,7 @@ export class UsersService {
   public getUsers(): Observable<any> {
     return this.http
       .get<User>(`${this.User}`)
-      .pipe(catchError(this._handleError)); //maneja el error en la respuesta
+      .pipe(catchError(this._handleError));
   }
 
   //Delete Users

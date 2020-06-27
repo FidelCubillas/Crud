@@ -14,6 +14,7 @@ import { ModalComponent } from './../modal/modal.component';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
+
 export class TableComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['name', 'age', 'userName', 'actions'];
   dataSource = new MatTableDataSource();
@@ -24,9 +25,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   constructor(private userSvc: UsersService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.userSvc
-      .getUsers()
-      .subscribe((user) => ((this.dataSource.data = user), console.log(user)));
+    this.all();
   }
 
   ngAfterViewInit() {
@@ -38,28 +37,23 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  all() {
+    this.userSvc
+        .getUsers()
+        .subscribe((user) => ((this.dataSource.data = user), console.log(user)));
+  }
+
+
   onNewUser() {
     this.openDialog();
   }
 
-  openDialog(user?: User): void {
-    const config = {
-      data: {
-        message: user ? 'Edit User' : 'New User',
-        content: user,
-      },
-    };
-
-    const dialogRef = this.dialog.open(ModalComponent, config);
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result ${result}`);
-    });
-  }
 
   onEditUser(user: User) {
     console.log('Edit user', user);
     this.openDialog(user);
   }
+
 
   onDeleteUser(id: string) {
     Swal.fire({
@@ -72,16 +66,30 @@ export class TableComponent implements OnInit, AfterViewInit {
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.value) {
-        this.userSvc
-          .deleteUserById(id)
-          .subscribe(() => this.userSvc.getUsers());
-        Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+        this.userSvc.deleteUserById(id).subscribe(() => this.all());
+        Swal.fire('Deleted!', ' The user has been deleted.', 'success');
       } else if (
-        /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
       ) {
-        Swal.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
+        Swal.fire('Cancelled', 'The user is safe :)', 'error');
       }
     });
   }
+
+
+  openDialog(user?: User): void {
+    const config = {
+      data: {
+        message: user ? 'Edit User' : 'New User',
+        content: user,
+      },
+    };
+
+    const dialogRef = this.dialog.open(ModalComponent, config);
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result ${result}`);
+      this.all()
+    });
+  }
+
 }

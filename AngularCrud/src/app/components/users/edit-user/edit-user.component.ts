@@ -35,7 +35,5 @@ export class EditUserComponent implements OnInit {
       age: this.user.age,
       userName: this.user.username,
     });
-
-    console.log(this.editUserForm);
   }
 }
